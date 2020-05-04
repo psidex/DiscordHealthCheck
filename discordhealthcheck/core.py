@@ -28,7 +28,7 @@ class _ClientContext:
 
 
 def start(
-    client: discord.client, port: int = 40404, bot_max_latency: float = 0.2
+    client: discord.client, port: int = 40404, bot_max_latency: float = 0.5
 ) -> None:
     """Starts the health check server.
 
