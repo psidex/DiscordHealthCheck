@@ -2,6 +2,14 @@
 
 A small library and command line app to automate Docker health checks for [discord.py](https://discordpy.readthedocs.io/en/latest/) bots.
 
+## How it works
+
+The library has 1 function, `start`. This takes a `discord.Client` object as well as various optional parameters. This
+function creates a TCP socket server and when a client connects, it tests the discord client for various things that
+indicate its health. The result of this health check is then sent to the client.
+
+The CLI app is a simple client that connects to the server and determines its exit code from what the server sends.
+
 ## Installation
 
 `pip install discordhealthcheck`
