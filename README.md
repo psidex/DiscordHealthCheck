@@ -1,12 +1,16 @@
 # Discord Health Check
 
-A small library for automating Docker healthchecks for discord.py bots.
+A small library and command line app to automate Docker health checks for [discord.py](https://discordpy.readthedocs.io/en/latest/) bots.
+
+## Installation
 
 `pip install discordhealthcheck`
 
+This will install both the Python library and the command line app.
+
 ## Usage
 
-### In Code
+### Python Library
 
 ```python
 import discord
@@ -16,18 +20,18 @@ class ExampleClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        discordhealthcheck.start(self, port=4040)
+        discordhealthcheck.start(self, port=12345)
 ```
 
-### In Dockerfile
+### Command Line App (in Dockerfile)
 
 ```dockerfile
 FROM python:3.8-slim-buster
 
-# Copy files, install requirements, etc.
+# Copy files, install requirements, setup bot, etc.
 # Make sure `pip install discordhealthcheck` happens
 
-HEALTHCHECK CMD discordhealthcheck -p 4040 || exit 1
+HEALTHCHECK CMD discordhealthcheck --port 12345 || exit 1
 
 CMD ["python","./path/to/bot/main.py"]
 ```

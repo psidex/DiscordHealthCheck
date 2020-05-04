@@ -20,7 +20,7 @@ requirements = read_local_file("requirements.txt").split("\n")
 setup(
     name="discordhealthcheck",
     version="0.0.1",
-    description="A small library for automating Docker healthchecks for discord.py bots ",
+    description="A small library and command line app to automate Docker health checks for discord.py bots.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/psidex/discordhealthcheck",
@@ -29,7 +29,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
-    keywords="discord discord.py docker healthcheck health bot",
+    keywords="discord discord.py docker healthcheck health check bot",
     packages=find_packages(exclude=["contrib", "docs", "tests", "examples"]),
     install_requires=requirements,
     entry_points={

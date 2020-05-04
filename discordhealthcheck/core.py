@@ -2,10 +2,10 @@ import asyncio
 
 import discord
 
-HOST = "127.0.0.1"
 
+class _ClientContext:
+    """A simple class to keep context for the client handler function"""
 
-class ClientContext:
     def __init__(self, client: discord.client, bot_max_latency: float):
         self.client = client
         self.bot_max_latency = bot_max_latency
@@ -23,9 +23,9 @@ class ClientContext:
 
 
 def start(
-    client: discord.client, port: int = 12345, bot_max_latency: float = 0.2
+    client: discord.client, port: int = 40404, bot_max_latency: float = 0.2
 ) -> None:
-    """Start a TCP socket server and listen for client connections
+    """Starts the health check server.
 
     Args:
         client: The discord.py client object to monitor
@@ -34,5 +34,6 @@ def start(
             connection to Discord
 
     """
-    ctx = ClientContext(client, bot_max_latency)
-    client.loop.create_task(asyncio.start_server(ctx.handle_socket_client, HOST, port))
+    host = "127.0.0.1"
+    ctx = _ClientContext(client, bot_max_latency)
+    client.loop.create_task(asyncio.start_server(ctx.handle_socket_client, host, port))
