@@ -13,10 +13,15 @@ class _ClientContext:
     async def handle_socket_client(
         self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter
     ) -> None:
-        message = b"unhealthy"
+        message = b"healthy"
 
-        if self.client.latency <= self.bot_max_latency:
-            message = b"healthy"
+        if (
+            self.client.latency > self.bot_max_latency  # Latency too high
+            or self.client.user is None  # Not logged in
+            or not self.client.is_ready()  # Client’s internal cache not ready
+            or self.client.is_closed()  # The websocket connection is closed
+        ):
+            message = b"unhealthy"
 
         writer.write(message)
         writer.close()
