@@ -19,7 +19,7 @@ requirements = read_local_file("requirements.txt").split("\n")
 
 setup(
     name="discordhealthcheck",
-    version="0.0.2",
+    version="0.0.3",
     description="A small library and command line app to automate Docker health checks for discord.py bots.",
     long_description=long_description,
     long_description_content_type="text/markdown",

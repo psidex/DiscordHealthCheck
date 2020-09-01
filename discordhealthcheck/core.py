@@ -29,7 +29,7 @@ class _ClientContext:
 
 def start(
     client: discord.client, port: int = 40404, bot_max_latency: float = 0.5
-) -> None:
+) -> asyncio.Task:
     """Starts the health check server.
 
     Args:
@@ -38,7 +38,12 @@ def start(
         bot_max_latency: The maximum acceptable latency (in seconds) for the bots
             connection to Discord
 
+    Returns:
+        asyncio.Task: The Task object for the healthcheck socket server
+
     """
     host = "127.0.0.1"
     ctx = _ClientContext(client, bot_max_latency)
-    client.loop.create_task(asyncio.start_server(ctx.handle_socket_client, host, port))
+    return client.loop.create_task(
+        asyncio.start_server(ctx.handle_socket_client, host, port)
+    )
