@@ -1,22 +1,11 @@
 # Discord Health Check
 
-A small library and command line app to automate Docker health checks for [discord.py](https://discordpy.readthedocs.io/en/latest/) bots.
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/discordhealthcheck)](https://pypi.org/project/discordhealthcheck/)
+[![PyPI](https://img.shields.io/pypi/v/discordhealthcheck)](https://pypi.org/project/discordhealthcheck/)
+[![license](https://img.shields.io/github/license/psidex/EACS.svg)](./LICENSE)
+[![Ko-fi donate link](https://img.shields.io/badge/Support%20Me-Ko--fi-orange.svg?style=flat&colorA=35383d)](https://ko-fi.com/M4M18XB1)
 
-## How it works
-
-### Server
-
-The library has 1 function, `start`. This takes a `discord.Client` object as well as optional parameters. This function
-creates a TCP socket server and when a client connects, it tests the discord client for various things that indicate
-its health. The result of this health check is then sent to the client.
-
-The socket server is started by creating an async Task in the Discord clients loop using `asyncio.start_server` .
-
-The default server port is `40404`.
-
-### Client
-
-The CLI app is a simple client that connects to the server and determines its exit code from what the server sends.
+A small Python 3 library and command line app to automate Docker health checks for [discord.py](https://discordpy.readthedocs.io/en/latest/) bots.
 
 ## Installation
 
@@ -24,11 +13,11 @@ The CLI app is a simple client that connects to the server and determines its ex
 
 This will install both the Python library and the command line app, the python library is importable using `import discordhealthcheck` and the CLI app by using the command `discordhealthcheck`.
 
-## Usage Examples
+## How It Works & Usage Examples
 
 ### Python Library (Server)
 
-The only function you will need is `start`. Here's the function signature:
+The library has 1 function, `start`. This takes a `discord.Client` object as well as optional parameters:
 
 ```python
 def start(
@@ -38,7 +27,16 @@ def start(
 ) -> asyncio.Task
 ```
 
-Here's how you might use it:
+`start` creates a TCP socket server which listens for any connection, and then when a client connects, it tests the
+discord client for various things that indicate its health (latency, login status, etc.). The result of this health
+check is then sent to the healthcheck client.
+
+The socket server is created as an async Task in the Discord clients loop using `asyncio.start_server` .
+
+The default port for the socket server is `40404`, if you change it you will need to use the `--port` flag on the
+client as well.
+
+Here's some example usage:
 
 ```python
 import discord
@@ -66,7 +64,12 @@ async def on_ready():
     print("Logged in")
 ```
 
-### Dockerfile (Client)
+### CLI App (Client)
+
+The CLI app is a simple client that connects to the server and determines its exit code from what the server sends; `0`
+for healthy, `1` for unhealthy.
+
+Here's an example of using in a Dockerfile:
 
 ```dockerfile
 FROM python:3.8-slim-buster
@@ -75,6 +78,7 @@ FROM python:3.8-slim-buster
 
 RUN pip install discordhealthcheck
 
+# The `|| exit 1` isn't required but it's good practice anyway.
 HEALTHCHECK CMD discordhealthcheck || exit 1
 
 CMD ["python", "/path/to/bot.py"]
