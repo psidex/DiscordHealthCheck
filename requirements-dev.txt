@@ -1,0 +1,4 @@
+pylint
+mypy
+bandit
+flake8
