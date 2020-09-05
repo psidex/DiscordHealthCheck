@@ -24,14 +24,14 @@ def start(
     client: discord.client,
     port: int = 40404,
     bot_max_latency: float = 0.5
-) -> asyncio.Task
+) -> asyncio.base_events.Server
 ```
 
-`start` creates a TCP socket server which listens for any connection, and then when a client connects, it tests the
+`start` creates a TCP socket server which listens for any connections, and then when a client connects, it tests the
 discord client for various things that indicate its health (latency, login status, etc.). The result of this health
 check is then sent to the healthcheck client.
 
-The socket server is created as an async Task in the Discord clients loop using `asyncio.start_server` .
+The returned `Server` object can be used to stop the server (e.g. `healthcheck_server.close()`)
 
 The default port for the socket server is `40404`, if you change it you will need to use the `--port` flag on the
 client as well.
