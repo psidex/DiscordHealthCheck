@@ -45,9 +45,9 @@ import discordhealthcheck
 class CustomClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        self.healthcheck_task = discordhealthcheck.start(self)
-        # Later you can cancel or check on self.healthcheck_task
+
+        self.healthcheck_server = discordhealthcheck.start(self)
+        # Later you can close or check on self.healthcheck_server
 ```
 
 or
