@@ -25,7 +25,7 @@ def main() -> None:
             data = s.recv(1024)
         except (ConnectionError, socket.timeout) as ex:
             print("Exception: {}: {}".format(ex.__class__.__name__, ex))
-            data = None
+            data = b""
 
     if data == b"healthy":
         print("Healthy!")

@@ -10,9 +10,7 @@ class _ClientContext:
         self.client = client
         self.bot_max_latency = bot_max_latency
 
-    def handle_socket_client(
-        self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter
-    ) -> None:
+    def handle_socket_client(self, writer: asyncio.StreamWriter, **kwargs) -> None:
         message = b"healthy"
 
         if (
@@ -44,6 +42,8 @@ def start(
     """
     host = "127.0.0.1"
     ctx = _ClientContext(client, bot_max_latency)
+    # The type is ignored as it expects handle_socket_client to accept a writer,
+    # instead **kwargs is used.
     return client.loop.run_until_complete(
-        asyncio.start_server(ctx.handle_socket_client, host, port)
+        asyncio.start_server(ctx.handle_socket_client, host, port)  # type: ignore
     )
