@@ -3,9 +3,9 @@
 [![CI](https://github.com/psidex/discordhealthcheck/workflows/CI/badge.svg)](https://github.com/psidex/discordhealthcheck/actions)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/discordhealthcheck)](https://pypi.org/project/discordhealthcheck/)
 [![PyPI](https://img.shields.io/pypi/v/discordhealthcheck)](https://pypi.org/project/discordhealthcheck/)
-[![license](https://img.shields.io/github/license/psidex/EACS.svg)](./LICENSE)
+[![Ko-fi donate link](https://img.shields.io/badge/Donate-Coffee-orange.svg?style=flat&colorA=35383d)](https://ko-fi.com/M4M18XB1)
+[![Ethereum donate link](https://img.shields.io/badge/Donate-Ether-5965a2.svg?style=flat&colorA=35383d)](https://etherscan.io/address/0x54A8Fe0C28B9DD4940266A78d70f11B621735A97)
 [![Black formatter](https://img.shields.io/badge/Code%20Style-Black-000000.svg)](https://github.com/psf/black)
-[![Ko-fi donate link](https://img.shields.io/badge/Support%20Me-Ko--fi-orange.svg?style=flat&colorA=35383d)](https://ko-fi.com/M4M18XB1)
 
 A small Python 3 library and command line app to automate Docker health checks for [discord.py](https://discordpy.readthedocs.io/en/latest/) bots.
 
