@@ -1,4 +1,5 @@
 import asyncio
+from typing import Awaitable
 
 import discord
 
@@ -28,9 +29,10 @@ class _ClientContext:
 
 
 def start(
-    client: discord.client, port: int = 40404, bot_max_latency: float = 0.5
-) -> asyncio.base_events.Server:
+    client: discord.Client, port: int = 40404, bot_max_latency: float = 0.5
+) -> Awaitable[asyncio.base_events.Server]:
     """Starts the health check server.
+    Usually a good place to put this is in the bots setup_hook method.
 
     Args:
         client: The discord.py client object to monitor
@@ -44,6 +46,4 @@ def start(
     """
     host = "127.0.0.1"
     ctx = _ClientContext(client, bot_max_latency)
-    return client.loop.run_until_complete(
-        asyncio.start_server(ctx.handle_socket_client, host, port)
-    )
+    return asyncio.start_server(ctx.handle_socket_client, host, port)

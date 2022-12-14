@@ -1,8 +1,8 @@
-from setuptools import setup, find_packages
-
 # To use a consistent encoding
 from codecs import open
 from os import path
+
+from setuptools import find_packages, setup
 
 here = path.abspath(path.dirname(__file__))
 
@@ -19,7 +19,7 @@ requirements = read_local_file("requirements.txt").split("\n")
 
 setup(
     name="discordhealthcheck",
-    version="0.0.8",
+    version="0.1.0",
     description="A small Python 3 library and command line app to automate Docker health checks for discord.py bots.",
     long_description=long_description,
     long_description_content_type="text/markdown",

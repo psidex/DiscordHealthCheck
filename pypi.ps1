@@ -1,3 +1,5 @@
+# Requirements: twine, wheel
+
 Write-Host "Building /dist"
 python setup.py sdist bdist_wheel
 
