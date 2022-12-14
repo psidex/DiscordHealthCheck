@@ -4,7 +4,10 @@ import sys
 
 parser = argparse.ArgumentParser(description="Perform a discord bot health check.")
 parser.add_argument(
-    "--port", default=40404, type=int, help="the port of the server to connect to",
+    "--port",
+    default=40404,
+    type=int,
+    help="the port of the server to connect to",
 )
 parser.add_argument(
     "--timeout",
@@ -24,7 +27,7 @@ def main() -> None:
             s.connect(("127.0.0.1", args.port))
             data = s.recv(1024)
         except (ConnectionError, socket.timeout) as ex:
-            print("Exception: {}: {}".format(ex.__class__.__name__, ex))
+            print(f"Exception: {ex.__class__.__name__}: {ex}")
             data = b""
 
     if data == b"healthy":

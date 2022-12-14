@@ -2,3 +2,4 @@ pylint
 mypy
 bandit
 flake8
+vulture

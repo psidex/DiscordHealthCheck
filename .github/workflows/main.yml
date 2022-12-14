@@ -32,3 +32,6 @@ jobs:
 
       - name: Security analysis (Bandit)
         run: bandit -r ./discordhealthcheck
+
+      - name: Unused code detection (Vulture)
+        run: vulture --ignore-names start,reader ./discordhealthcheck

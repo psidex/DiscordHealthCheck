@@ -7,7 +7,7 @@ import discord
 class _ClientContext:
     """A simple class to keep context for the client handler function"""
 
-    def __init__(self, client: discord.client, bot_max_latency: float):
+    def __init__(self, client: discord.Client, bot_max_latency: float):
         self.client = client
         self.bot_max_latency = bot_max_latency
 
